@@ -1,0 +1,40 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible' content='ie=edge')
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU' crossorigin='anonymous')
+    title urlShortener
+  body
+    nav.navbar.navbar-light.navbar-expand-lg(style='background-color: #e3f2fd;')
+      .container-fluid
+        a.navbar-brand(href='/') urlShortener
+        button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        #navbarSupportedContent.collapse.navbar-collapse
+          ul.navbar-nav.me-auto.mb-2.mb-lg-0
+            li.nav-item
+              a.nav-link.active(aria-current='page' href='/') Home
+    .container.m-5
+      h3 URL Shortener
+      form.my-4.form-inline
+        .input-group.mb-3
+          input#fullURL.form-control(required type='url' name='fullURL' placeholder='drop the url here')
+          button#buttonSubmit.btn.btn-outline-info(type='submit') Submit
+      table.table.table-striped.table-responsive
+        thead
+          tr
+            th(scope='col') Full url
+            th(scope='col') Short url
+            th(scope='col') Number of Clicks
+        tbody
+        each m in shortUrls
+          tr
+            td
+              a(href=`${m.fullURL}`) #{m.fullURL}
+            td
+              a(href=`${m.shortURL}`) #{m.shortURL}
+            td #{m.clicks}
+  script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ' crossorigin='anonymous')
+  script(src="/js/index.js")
